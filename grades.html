@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Grades Bot - Andrew</title>
+<style>
+body { font-family: Arial; background: #f0f0f0; text-align: center; padding: 20px; }
+.box { background: white; max-width: 500px; margin: auto; padding: 20px; border-radius: 15px; }
+input { width: 80%; padding: 12px; font-size: 18px; margin: 10px; }
+button { background: green; color: white; padding: 12px 25px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer; }
+#answer { margin-top: 20px; font-size: 18px; text-align: left; background: #e8ffe8; padding: 15px; border-radius: 10px; }
+</style>
+</head>
+<body>
+<div class="box">
+<h1>🎓 Grades Bot by Andrew</h1>
+<p>Type your Admission Number:</p>
+<input id="adm" placeholder="e.g. ADM001">
+<br>
+<button onclick="check()">Check Grades</button>
+<div id="answer">Your grades will appear here...</div>
+</div>
+
+<script>
+let students = {
+  "ADM001": "Name: Andrew<br>Math: A<br>English: B<br>Kiswahili: A-<br>Science: B+",
+  "ADM002": "Name: John<br>Math: B<br>English: C<br>Kiswahili: B+<br>Science: A",
+  "ADM003": "Name: Mary<br>Math: A+<br>English: A<br>Kiswahili: A<br>Science: B+",
+  "ADM004": "Name: Kevin<br>Math: C<br>English: B<br>Kiswahili: B<br>Science: C+"
+};
+
+function check() {
+  let code = document.getElementById("adm").value.toUpperCase().trim();
+  let box = document.getElementById("answer");
+  if (students[code]) {
+    box.innerHTML = "✅ FOUND!<br><br>" + students[code];
+  } else {
+    box.innerHTML = "❌ Not found! Try ADM001, ADM002, ADM003 or ADM004";
+  }
+}
+</script>
+</body>
+</html>
