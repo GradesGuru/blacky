@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shop Bot - Andrew</title>
+<style>
+body { font-family: Arial; background: #f0f0f0; padding: 20px; }
+.box { background: white; max-width: 500px; margin: auto; padding: 20px; border-radius: 15px; }
+#chat { height: 300px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
+.bot { background: #e1f5fe; padding: 8px; border-radius: 10px; margin: 5px; }
+.you { background: #c8e6c9; padding: 8px; border-radius: 10px; margin: 5px; text-align: right; }
+input { width: 75%; padding: 10px; }
+button { padding: 10px; background: green; color: white; border: none; border-radius: 5px; }
+</style>
+</head>
+<body>
+<div class="box">
+<h2>🛒 Shop Bot by Andrew</h2>
+<div id="chat">
+<div class="bot">Hello! I am your Shop Bot. Type like this:<br><b>sugar 500, soap 300, milk 800, bread 450</b></div>
+</div>
+<input id="msg" placeholder="Type your sales here...">
+<button onclick="send()">Send</button>
+</div>
+
+<script>
+function send() {
+  let text = document.getElementById("msg").value;
+  if(!text) return;
+  let chat = document.getElementById("chat");
+  chat.innerHTML += '<div class="you">' + text + '</div>';
+  
+  // This is YOUR shop.py logic, but in website language!
+  let numbers = text.match(/\d+/g);
+  let total = 0;
+  if(numbers) {
+    for(let n of numbers) { total += parseInt(n); }
+    let avg = total / numbers.length;
+    chat.innerHTML += '<div class="bot">Total Sales: ' + total + '<br>Average Sales: ' + avg + '<br>Great job, Andrew!</div>';
+  } else {
+    chat.innerHTML += '<div class="bot">Please type numbers! Example: sugar 500, soap 300</div>';
+  }
+  document.getElementById("msg").value = "";
+  chat.scrollTop = chat.scrollHeight;
+}
+</script>
+</body>
+</html>
